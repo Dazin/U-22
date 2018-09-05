@@ -471,9 +471,13 @@ public class IdeaDB {
 		Dao Dao = null;
 		ResultSet rs =null;
 		String sql =  "INSERT INTO likes (" +
-			"idea_no)" +
+			"idea_no,"
+			+ "like_date)" +
 			" VALUES (" +
-			""+ _ideaNo + ")";
+			""+ _ideaNo +"," +
+			"0000-00-00)";
+
+
 
 		try{
 			System.out.println("Dao参照");

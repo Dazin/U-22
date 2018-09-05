@@ -70,8 +70,7 @@ UserDB User = (UserDB)request.getAttribute("User");
 </div>
 <div class="bg-light mb-5">
 
-<form action="./ContributionInsertServlet" method="post">
-<input type="hidden" name="Insert" value="<%=Idea %>">
+<form action="./LikeInsertSearvlet" method="post">
 
 
 <div class="form-group mx-auto" style="width: 200px;">
@@ -115,7 +114,7 @@ if(Idea.getUserNo() != User.getNo()){
 %>
 <div class="form-group mx-auto" style="width: 80px;">
 <div class="btn-group">
-<input type="hidden" name="ideaNo" value="<%=Idea.getUserNo()%>">
+<input type="hidden" name="IdeaNo" value="<%=Idea.getNo()%>">
 <button type="submit" class="btn btn-primary">Like！</button>
 </div>
 </div>
