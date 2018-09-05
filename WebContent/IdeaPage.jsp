@@ -46,7 +46,7 @@ UserDB User = (UserDB)request.getAttribute("User");
 <a class="nav-link" href="./MypageServlet">マイページ</a>
 </li>
 <li class="nav-item">
-<a class="nav-link" href="/IdeaSearch.jsp">アイデア検索</a>
+<a class="nav-link" href="./IdeaSearch.jsp">アイデア検索</a>
 </li>
 <li class="nav-item">
 <a class="nav-link" href="./RankingServlet">ランキング</a>
@@ -111,10 +111,11 @@ UserDB User = (UserDB)request.getAttribute("User");
 </div>
 <br>
 <%
-if(!(Idea.getUserNo().equals(User.getNo()))){
+if(Idea.getUserNo() != User.getNo()){
 %>
 <div class="form-group mx-auto" style="width: 80px;">
 <div class="btn-group">
+<input type="hidden" name="ideaNo" value="<%=Idea.getUserNo()%>">
 <button type="submit" class="btn btn-primary">Like！</button>
 </div>
 </div>

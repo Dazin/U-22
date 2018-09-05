@@ -1,7 +1,6 @@
-package ideaSearch;
+package contribution;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,21 +9,22 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import contribution.IdeaDB;
+import user.UserDB;
 
 /**
- * Servlet implementation class RankingServlet
+ * Servlet implementation class LikeInsertSearvlet
  */
-@WebServlet("/RankingServlet")
-public class RankingServlet extends HttpServlet {
+@WebServlet("/LikeInsertSearvlet")
+public class LikeInsertSearvlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public RankingServlet() {
+    public LikeInsertSearvlet() {
         super();
         // TODO Auto-generated constructor stub
+
     }
 
 	/**
@@ -32,14 +32,18 @@ public class RankingServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		String IdeaNo = request.getParameter("IdeaNo");
+		IdeaDB Idea = new IdeaDB();
+		UserDB User = new UserDB();
+		Idea = IdeaDB.IdeaPage(IdeaNo);
+		User = UserDB.SelectUser(Idea.getUserNo());
+		IdeaDB.likesInsert(IdeaNo);
 
-		ArrayList<IdeaDB> IdeaList = new ArrayList<IdeaDB>();
 
 
-
-		IdeaList = IdeaDB.IdeaRanking();
-		request.setAttribute("IdeaList", IdeaList);
-		RequestDispatcher rd=request.getRequestDispatcher("/Ranking.jsp");
+		request.setAttribute("User", User);
+		request.setAttribute("Idea", Idea);
+		RequestDispatcher rd=request.getRequestDispatcher("./IdeaPage.jsp");
 		rd.forward(request, response);
 	}
 
@@ -50,6 +54,7 @@ public class RankingServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		request.setCharacterEncoding("utf-8");
 		response.setCharacterEncoding("utf-8");
+
 		doGet(request,response);
 	}
 

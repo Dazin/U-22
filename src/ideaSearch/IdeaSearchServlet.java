@@ -42,9 +42,6 @@ public class IdeaSearchServlet extends HttpServlet {
 		}else {
 			IdeaList = IdeaDB.IdeaSearch(IdeaName,IdeaGenre);
 		}
-
-
-		IdeaList = IdeaDB.IdeaRanking();
 		request.setAttribute("IdeaList", IdeaList);
 		RequestDispatcher rd=request.getRequestDispatcher("/IdeaSearchResult.jsp");
 		rd.forward(request, response);

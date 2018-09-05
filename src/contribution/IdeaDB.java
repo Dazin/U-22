@@ -7,6 +7,7 @@ import Dao.Dao;
 
 public class IdeaDB {
 
+
 	private String no;
 	private String name;
 	private String genre;
@@ -88,6 +89,7 @@ public class IdeaDB {
 	 * @param genreName genreName
 	 */
 	public void setGenreName(String genre) {
+
 			switch(Integer.parseInt(genre)) {
 		    case 1:
 			    this.genreName = "食品";
@@ -463,6 +465,34 @@ public class IdeaDB {
 
 	}
 
+	public static void likesInsert(String _ideaNo){
+
+
+		Dao Dao = null;
+		ResultSet rs =null;
+		String sql =  "INSERT INTO likes (" +
+			"idea_no)" +
+			" VALUES (" +
+			""+ _ideaNo + ")";
+
+		try{
+			System.out.println("Dao参照");
+			Dao = new Dao();
+			System.out.println("DB接続");
+			Dao.executeUpdate(sql);
+		}catch(Exception e){
+			System.out.println(e);
+		}finally{
+			try{
+				if(rs != null){
+					rs.close();
+				}
+				Dao.close();
+		}catch(Exception e){
+		}
+	}
+	System.out.println(sql);
+	}
 
 	public static void IdeaInsert(String _name,String _genre,String _quality1,String _quality2,String _quality3,String _content,String _userId){
 
@@ -540,3 +570,5 @@ public class IdeaDB {
 	}
 
 }
+
+

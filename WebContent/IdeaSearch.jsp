@@ -90,7 +90,7 @@ jQuery(function($){
 <a class="nav-link" href="./MypageServlet">マイページ</a>
 </li>
 <li class="nav-item">
-<a class="nav-link" href="/IdeaSearch.jsp">アイデア検索</a>
+<a class="nav-link" href="./IdeaSearch.jsp">アイデア検索</a>
 </li>
 <li class="nav-item">
 <a class="nav-link" href="./RankingServlet">ランキング</a>
