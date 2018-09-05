@@ -2,11 +2,13 @@
     pageEncoding="UTF-8"%>
     <%@ page import="java.util.*" %>
     <%@ page import="java.sql.Date" %>
+    <%@ page import="contribution.IdeaDB" %>
 
 
 
 <%
 
+ArrayList<IdeaDB> arrayList= (ArrayList<IdeaDB>)request.getAttribute("IdeaList");
 
 %>
 <!DOCTYPE html>
@@ -139,6 +141,37 @@ jQuery(function($){
 </form>
 </div>
 </div>
+<form action="./IdeaPageServlet" method="post">
+<table id="foo-table" border=1 class="table table-bordered mx-auto" style="background-color:#edfcfc">
+
+<thead>
+<tr>
+<th>アイデア名</th>
+<th> Like！</th>
+
+</tr>
+</thead>
+<%
+	for (IdeaDB i  : arrayList) {
+%>
+
+
+<tbody>
+
+<tr>
+<td><button class="btn btn-link" type="submit" name="IdeaNo" value="<%=i.getNo()%>"><%=i.getName() %></button></td>
+<td><%=i.getLikeCount() + "Like！" %></td>
+</tr>
+
+<%
+
+}
+%>
+<tbody>
+
+
+</table>
+</form>
 
 
 </body>

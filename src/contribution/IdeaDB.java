@@ -232,6 +232,100 @@ public class IdeaDB {
 
 	}
 
+	public static ArrayList<IdeaDB> IdeaSearch(String name,String genre){
+		String sql = "SELECT * FROM idea INNER JOIN (SELECT idea_no,COUNT(*) AS likecount FROM likes group by idea_no) AS nowlikes ON idea.no = nowlikes.idea_no where name LIKE '%"+ name +"%' AND genre LIKE '%"+ genre +"%' ORDER BY nowlikes.likecount desc;";
+
+		ArrayList<IdeaDB> IdeaList = new ArrayList<IdeaDB>();
+		Dao Dao = null;
+		ResultSet rs =null;
+
+		try{
+			System.out.println("Dao参照");
+			Dao = new Dao();
+			rs = Dao.execute(sql);
+			while(rs.next()){
+				IdeaDB Idea = new IdeaDB();
+				Idea.setNo(rs.getString("no"));
+				Idea.setName(rs.getString("name"));
+				Idea.setGenreName(rs.getString("genre"));
+				Idea.setQuality1(rs.getString("quality1"));
+				Idea.setQuality2(rs.getString("quality2"));
+				Idea.setQuality3(rs.getString("quality3"));
+				Idea.setContent(rs.getString("content"));
+				Idea.setStatus(rs.getString("status"));
+				Idea.setUserNo(rs.getString("user_no"));
+				Idea.setLikeCount(rs.getString("likecount"));
+				IdeaList.add(Idea);
+
+			}
+		}catch(Exception e){
+			System.out.println(e);
+		}
+		finally{
+			try{
+				if(rs != null){
+					rs.close();
+				}
+				Dao.close();
+			}
+			catch(Exception e){
+
+			}
+
+		}
+		System.out.println(sql);
+		return IdeaList;
+
+
+	}
+	public static ArrayList<IdeaDB> IdeaSearch(String name){
+		String sql = "SELECT * FROM idea INNER JOIN (SELECT idea_no,COUNT(*) AS likecount FROM likes group by idea_no) AS nowlikes ON idea.no = nowlikes.idea_no where name LIKE '%"+ name +"%' ORDER BY nowlikes.likecount desc;";
+
+		ArrayList<IdeaDB> IdeaList = new ArrayList<IdeaDB>();
+		Dao Dao = null;
+		ResultSet rs =null;
+
+		try{
+			System.out.println("Dao参照");
+			Dao = new Dao();
+			rs = Dao.execute(sql);
+			while(rs.next()){
+				IdeaDB Idea = new IdeaDB();
+				Idea.setNo(rs.getString("no"));
+				Idea.setName(rs.getString("name"));
+				Idea.setGenreName(rs.getString("genre"));
+				Idea.setQuality1(rs.getString("quality1"));
+				Idea.setQuality2(rs.getString("quality2"));
+				Idea.setQuality3(rs.getString("quality3"));
+				Idea.setContent(rs.getString("content"));
+				Idea.setStatus(rs.getString("status"));
+				Idea.setUserNo(rs.getString("user_no"));
+				Idea.setLikeCount(rs.getString("likecount"));
+				IdeaList.add(Idea);
+
+			}
+		}catch(Exception e){
+			System.out.println(e);
+		}
+		finally{
+			try{
+				if(rs != null){
+					rs.close();
+				}
+				Dao.close();
+			}
+			catch(Exception e){
+
+			}
+
+		}
+		System.out.println(sql);
+		return IdeaList;
+
+
+	}
+
+
 	public static ArrayList<IdeaDB> IdeaRanking(){
 		String sql = "SELECT * FROM idea INNER JOIN (SELECT idea_no,COUNT(*) AS likecount FROM likes group by idea_no) AS nowlikes ON idea.no = nowlikes.idea_no ORDER BY nowlikes.likecount desc;";
 
@@ -319,6 +413,9 @@ public class IdeaDB {
 
 
 	}
+
+
+
 
 
 	public static ArrayList<IdeaDB> IdeaDuplication(String _genre){

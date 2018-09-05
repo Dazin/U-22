@@ -36,6 +36,8 @@ public class RankingServlet extends HttpServlet {
 		ArrayList<IdeaDB> IdeaList = new ArrayList<IdeaDB>();
 
 
+
+
 		IdeaList = IdeaDB.IdeaRanking();
 		request.setAttribute("IdeaList", IdeaList);
 		RequestDispatcher rd=request.getRequestDispatcher("/Ranking.jsp");
