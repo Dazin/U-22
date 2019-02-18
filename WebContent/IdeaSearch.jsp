@@ -77,7 +77,7 @@ jQuery(function($){
 <body>
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
- <a class="navbar-brand" href="./Top.jsp">くりえいとる</a>
+ <a class="navbar-brand" href="./Top.jsp">CreateAll</a>
 
  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav1" aria-controls="navbarNav1" aria-expanded="false" aria-label="Toggle navigation">
  <span class="navbar-toggler-icon"></span>
@@ -115,11 +115,11 @@ jQuery(function($){
 <label for="genre" class="control-label">ジャンル</label>
 <select name="genre"size="1"  class="form-control">
 <option value="0"selected>--</option>
-<option value="食品">食品</option>
-<option value="電化製品">電化製品</option>
-<option value="日用品">日用品</option>
-<option value="家具（インテリア）">家具（インテリア）</option>
-<option value="その他">その他</option>
+<option value="1">食品</option>
+<option value="2">電化製品</option>
+<option value="3">日用品</option>
+<option value="4">家具（インテリア）</option>
+<option value="5">その他</option>
 </select>
 </div>
 

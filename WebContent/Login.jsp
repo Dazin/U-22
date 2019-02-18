@@ -27,13 +27,13 @@
 <body>
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
- <a class="navbar-brand" href="./Top.jsp">くりえいとる</a>
+<a class="navbar-brand" href="./Top.jsp">CreateAll</a>
 
- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav1" aria-controls="navbarNav1" aria-expanded="false" aria-label="Toggle navigation">
- <span class="navbar-toggler-icon"></span>
- </button>
+<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav1" aria-controls="navbarNav1" aria-expanded="false" aria-label="Toggle navigation">
+<span class="navbar-toggler-icon"></span>
+</button>
 
- <div class="collapse navbar-collapse" id="navbarNav1">
+<div class="collapse navbar-collapse" id="navbarNav1">
 
 <ul class="navbar-nav mr-auto">
 <li class="nav-item">
@@ -53,15 +53,15 @@
 </nav>
 
 <div class="container">
-<div class="mx-auto" style="height:width:auto;">
 
 <form action="./LoginServlet" method="post">
 
-
 <div class="form-group">
+<div class="mx-auto" style="width:auto;">
 <label for="id" class="col-4 col-form-label">ユーザーID</label>
 <div class="col-4">
 <input type="text" name="id" class="form-control input-sm" value=""required>
+</div>
 </div>
 </div>
 
@@ -81,6 +81,5 @@
 </form>
 </div>
 
-</div>
 </body>
 </html>

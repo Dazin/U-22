@@ -16,7 +16,16 @@ public class UserDB {
 	private String post;
 	private String address;
 	private String tel;
+	private String classid;
 
+
+	public String getClassid() {
+		return classid;
+	}
+
+	public void setClassid(String classid) {
+		this.classid = classid;
+	}
 
 	public UserDB(){
 
@@ -216,6 +225,7 @@ public class UserDB {
 				}else{
 					u.setSex("女性");
 				}
+				u.setClassid(rs.getString("classid"));
 			}
 
 

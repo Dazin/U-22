@@ -36,23 +36,30 @@ public class MypageServlet extends HttpServlet {
 
 
 		HttpSession session = request.getSession(false);
-		ArrayList<IdeaDB> List = new ArrayList<IdeaDB>();
+		ArrayList<IdeaDB> IdeaList = new ArrayList<IdeaDB>();
+		ArrayList<MailDB> MailList = new ArrayList<MailDB>();
+		ArrayList<MfDB> MfList = new ArrayList<MfDB>();
+
 		UserDB u = new UserDB();
 		String jsp = "/Login.jsp";
-		String userName = "";
-		String passWord = "";
 
 
+		u = (UserDB)session.getAttribute("LoginUser");
 	    if (session == null || session.getAttribute("LoginUser") == null) {
 			 session = request.getSession(true);
 	    	 jsp = "/Login.jsp";
-		}else{
+		}else {
 			jsp = "/Mypage.jsp";
-			u = (UserDB)session.getAttribute("LoginUser");
-			List = IdeaDB.UserIdea(u.getNo());
-		    session.setAttribute("UserIdeaList", List);
-		}
+			IdeaList = IdeaDB.UserIdea(u.getNo());
+			MailList = MailDB.getMail(u.getNo());
+			MfList = MfDB.getMatchfund(u.getNo());
 
+
+		    session.setAttribute("UserIdeaList", IdeaList);
+		    session.setAttribute("UserMailList", MailList);
+		    session.setAttribute("UserMfList", MfList);
+
+		}
 		RequestDispatcher rd=request.getRequestDispatcher(jsp);
 		rd.forward(request, response);
 	}

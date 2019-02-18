@@ -235,7 +235,7 @@ public class IdeaDB {
 	}
 
 	public static ArrayList<IdeaDB> IdeaSearch(String name,String genre){
-		String sql = "SELECT * FROM idea INNER JOIN (SELECT idea_no,COUNT(*) AS likecount FROM likes group by idea_no) AS nowlikes ON idea.no = nowlikes.idea_no where name LIKE '%"+ name +"%' AND genre LIKE '%"+ genre +"%' ORDER BY nowlikes.likecount desc;";
+		String sql = "SELECT * FROM idea INNER JOIN (SELECT idea_no,IFNULL(COUNT(*),0) AS likecount FROM likes group by idea_no) AS nowlikes ON idea.no = nowlikes.idea_no where name LIKE '%"+ name +"%' AND genre = "+ genre +" ORDER BY nowlikes.likecount desc;";
 
 		ArrayList<IdeaDB> IdeaList = new ArrayList<IdeaDB>();
 		Dao Dao = null;
@@ -281,7 +281,7 @@ public class IdeaDB {
 
 	}
 	public static ArrayList<IdeaDB> IdeaSearch(String name){
-		String sql = "SELECT * FROM idea INNER JOIN (SELECT idea_no,COUNT(*) AS likecount FROM likes group by idea_no) AS nowlikes ON idea.no = nowlikes.idea_no where name LIKE '%"+ name +"%' ORDER BY nowlikes.likecount desc;";
+		String sql = "SELECT *,IFNULL(likecount,0) FROM idea LEFT JOIN (SELECT idea_no,IFNULL(COUNT(*),0) AS likecount FROM likes group by idea_no) AS nowlikes ON idea.no = nowlikes.idea_no where name LIKE '%"+ name +"%' ORDER BY IFNULL(nowlikes.likecount,0) desc;";
 
 		ArrayList<IdeaDB> IdeaList = new ArrayList<IdeaDB>();
 		Dao Dao = null;
@@ -302,7 +302,7 @@ public class IdeaDB {
 				Idea.setContent(rs.getString("content"));
 				Idea.setStatus(rs.getString("status"));
 				Idea.setUserNo(rs.getString("user_no"));
-				Idea.setLikeCount(rs.getString("likecount"));
+				Idea.setLikeCount(rs.getString("IFNULL(likecount,0)"));
 				IdeaList.add(Idea);
 
 			}
@@ -329,7 +329,7 @@ public class IdeaDB {
 
 
 	public static ArrayList<IdeaDB> IdeaRanking(){
-		String sql = "SELECT * FROM idea INNER JOIN (SELECT idea_no,COUNT(*) AS likecount FROM likes group by idea_no) AS nowlikes ON idea.no = nowlikes.idea_no ORDER BY nowlikes.likecount desc;";
+		String sql = "SELECT *,IFNULL(likecount,0) FROM idea LEFT JOIN (SELECT idea_no,COUNT(*) AS likecount FROM likes group by idea_no) AS nowlikes ON idea.no = nowlikes.idea_no ORDER BY IFNULL(nowlikes.likecount,0) desc;";
 
 		ArrayList<IdeaDB> IdeaList = new ArrayList<IdeaDB>();
 		Dao Dao = null;
@@ -350,7 +350,7 @@ public class IdeaDB {
 				Idea.setContent(rs.getString("content"));
 				Idea.setStatus(rs.getString("status"));
 				Idea.setUserNo(rs.getString("user_no"));
-				Idea.setLikeCount(rs.getString("likecount"));
+				Idea.setLikeCount(rs.getString("IFNULL(likecount,0)"));
 				IdeaList.add(Idea);
 
 			}
@@ -415,7 +415,6 @@ public class IdeaDB {
 
 
 	}
-
 
 
 

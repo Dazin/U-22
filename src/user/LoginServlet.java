@@ -38,26 +38,18 @@ public class LoginServlet extends HttpServlet {
 		String userId = request.getParameter("id");
 		String pass = request.getParameter("pass");
 		System.out.println(session.getAttribute("LoginUser"));
-
 	    if (session == null || session.getAttribute("LoginUser") == null) {
 			 session = request.getSession(true);
 	    }
-
-
-
 		u = UserDB.UserLogin(userId,pass);
-
-
 	    if(userId.equals(u.getId()) && pass.equals(u.getPass())){
 			jsp = "./MypageServlet";
 	    }else{
 			jsp = "/LoginError.jsp";
 	    }
-
 	    session.setAttribute("LoginUser",u);
 		RequestDispatcher rd=request.getRequestDispatcher(jsp);
 		rd.forward(request, response);
-
 
 	}
 

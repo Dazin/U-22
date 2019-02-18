@@ -9,7 +9,7 @@
 
 <%
 
-
+UserDB List=(UserDB)session.getAttribute("LoginUser");
 IdeaDB Idea = (IdeaDB)request.getAttribute("Idea");
 UserDB User = (UserDB)request.getAttribute("User");
 
@@ -33,7 +33,7 @@ UserDB User = (UserDB)request.getAttribute("User");
 <body>
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
- <a class="navbar-brand" href="./Top.jsp">くりえいとる</a>
+ <a class="navbar-brand" href="./Top.jsp">CreateAll</a>
 
  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav1" aria-controls="navbarNav1" aria-expanded="false" aria-label="Toggle navigation">
  <span class="navbar-toggler-icon"></span>
@@ -108,21 +108,18 @@ UserDB User = (UserDB)request.getAttribute("User");
 <br>
 <%=Idea.getContent() %>
 </div>
-<br>
 <%
-if(Idea.getUserNo() != User.getNo()){
+if(Idea.getUserNo() != List.getNo()){
 %>
 <div class="form-group mx-auto" style="width: 80px;">
-<div class="btn-group">
 <input type="hidden" name="IdeaNo" value="<%=Idea.getNo()%>">
-<button type="submit" class="btn btn-primary">Like！</button>
-</div>
+<button type="submit" class="btn btn-danger" onclick="this.disabled = true;">Like！</button>
 </div>
 <%
 }
 %>
 </form>
-
+<br>
 </div>
 
 
